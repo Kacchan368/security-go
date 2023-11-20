@@ -10,7 +10,7 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   login(request: JwtRequest) {
-    return this.http.post("https://backned-go-security.onrender.com//authenticate", request);
+    return this.http.post("https://backned-go-security.onrender.com/authenticate", request);
   }
   verificar() {
     let token = sessionStorage.getItem("token");
