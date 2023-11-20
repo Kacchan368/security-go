@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div class="container" style="text-align: center">
+      <h2>Registro de Pertenencia</h2>
+
+      <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+        <mat-form-field class="example-full-width" *ngIf="edicion">
+          <mat-label>idPertenencias</mat-label>
+          <input matInput placeholder="Id" formControlName="idPertenencias" />
+        </mat-form-field>
+        <br />
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Nombre Pertenencia</mat-label>
+          <input
+            matInput
+            placeholder="namePertenencias"
+            formControlName="namePertenencias"
+          />
+          <mat-error
+            *ngIf="obtenerControlCampo('namePertenencias')?.errors?.['required']"
+          >
+            El nombre es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br />
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Anio</mat-label>
+          <input
+            matInput
+            placeholder="AnioPertenencias"
+            formControlName="AnioPertenencias"
+          />
+          <mat-error
+            *ngIf="obtenerControlCampo('AnioPertenencias')?.errors?.['required']"
+          >
+            El anio es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br />
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Especificacion</mat-label>
+          <input
+            matInput
+            placeholder="EspecificacionesPertenencias"
+            formControlName="EspecificacionesPertenencias"
+          />
+          <mat-error
+            *ngIf="obtenerControlCampo('EspecificacionesPertenencias')?.errors?.['required']"
+          >
+            La Especificacion es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br />
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Imagen</mat-label>
+          <input
+            matInput
+            placeholder="ImagenPertenencias"
+            formControlName="ImagenPertenencias"
+          />
+          <mat-error
+            *ngIf="obtenerControlCampo('ImagenPertenencias')?.errors?.['required']"
+          >
+            La Imagen es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br />
+
+        <mat-form-field class="example-full-width">
+          <mat-label> Marca </mat-label>
+          <mat-select
+            [(value)]="idMarcaCSeleccionado"
+            formControlName="idPertenenciasMarca"
+          >
+            <mat-option
+              *ngFor="let p of listaMarca"
+              [value]="p.idPertenenciasMarca"
+            >
+              {{ p.idPertenenciasMarca }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="obtenerControlCampo('idPertenenciasMarca')?.errors?.['required']"
+          >
+            escoga el espacio requerido es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br />
+
+        <mat-form-field class="example-full-width">
+          <mat-label> Modelo </mat-label>
+          <mat-select
+            [(value)]="idModeloSeleccionado"
+            formControlName="idPertenenciasModelo"
+          >
+            <mat-option
+              *ngFor="let p of listaModelo"
+              [value]="p.idPertenenciasModelo"
+            >
+              {{ p.idPertenenciasModelo }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="obtenerControlCampo('idPertenenciasModelo')?.errors?.['required']"
+          >
+            escoga el espacio requerido es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br />
+
+        <button mat-raised-button style="background-color: green; color: white;">Aceptar</button>
+        <button mat-raised-button color="warn" routerLink="/components/Pertenencia">
+          Cancelar
+        </button>
+        <p>{{ mensaje }}</p>
+      </form>
+    </div>
+  </body>
+</html>

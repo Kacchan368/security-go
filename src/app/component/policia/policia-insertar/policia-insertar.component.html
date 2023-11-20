@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loguin Policia</title>
+  </head>
+  <body>
+    <div class="container" style="text-align: center">
+      <h2>Registrese como policia</h2>
+      <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+        <mat-form-field class="example-full-width" *ngIf="edicion">
+          <mat-label>Id. Policia</mat-label>
+          <input matInput placeholder="Id" formControlName="idPolicia" />
+          <mat-error
+            *ngIf="obtenerControlCampo('idPolicia')?.errors?.['required']"
+          >
+            El id del policia es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Numero Placa</mat-label>
+          <input
+            matInput
+            placeholder="Numero de placa"
+            formControlName="numeroPlacaPolicia"
+          />
+          <mat-error
+            *ngIf="obtenerControlCampo('numeroPlacaPolicia')?.errors?.['required']"
+          >
+            El nro. de placa es obligatoria.
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Foto del Rostro</mat-label>
+          <input
+            matInput
+            placeholder="Foto Rostro"
+            formControlName="fotoRostroPolicia"
+          />
+          <mat-error
+            *ngIf="obtenerControlCampo('fotoRostroPolicia')?.errors?.['required']"
+          >
+            La foto del rostro es obligatoria.
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Foto Identificacion</mat-label>
+          <input
+            matInput
+            placeholder="Foto Identificacion"
+            formControlName="fotoIdentPolicia"
+          />
+          <mat-error
+            *ngIf="obtenerControlCampo('fotoIdentPolicia')?.errors?.['required']"
+          >
+            La foto de identificación es obligatoria.
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Rango</mat-label>
+          <input matInput placeholder="rango" formControlName="rangoPolicia" />
+          <mat-error
+            *ngIf="obtenerControlCampo('rangoPolicia')?.errors?.['required']"
+          >
+            El rango es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Seleccione id. Comisaria</mat-label>
+          <mat-select
+            [(value)]="idComisariaSeleccionada"
+            formControlName="idComisaria"
+          >
+            <mat-option *ngFor="let p of listaComisaria" [value]="p.idComisaria">
+              {{ p.idComisaria }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="obtenerControlCampo('idComisaria')?.errors?.['required']"
+          >
+            El id del tipo de caso es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Seleccione id. User</mat-label>
+          <mat-select
+            [(value)]="idUserSeleccionado"
+            formControlName="users"
+          >
+            <mat-option *ngFor="let p of listaUsuario" [value]="p.id">
+              {{ p.id }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="obtenerControlCampo('users')?.errors?.['required']"
+          >
+            El id del usuario es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <button mat-raised-button style="background-color: green; color: white;">Aceptar</button>
+        <button mat-raised-button color="warn" routerLink="/components/policia">
+          Cancelar
+        </button>
+        <p>{{ mensaje }}</p>
+      </form>
+    </div>
+  </body>
+</html>

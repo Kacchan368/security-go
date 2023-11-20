@@ -1,0 +1,85 @@
+<mat-toolbar style="color: white; background-color: black;" *ngIf="verificar()">
+  <button mat-button (click)="redirigir('https://main--resonant-naiad-4cc6df.netlify.app')">
+    <mat-icon>home</mat-icon>
+  </button>
+  <button mat-button [matMenuTriggerFor]="menuAyuda">Ayuda</button>
+  <button mat-button [matMenuTriggerFor]="menuCiudadano" *ngIf="role == 'ADMIN'">Ciudadano</button>
+  <button mat-button [matMenuTriggerFor]="menuPolicia" *ngIf="role == 'ADMIN' || role === 'POLICIA'">Policia</button>
+  <button mat-button [matMenuTriggerFor]="menuDenuncia">Denuncia</button>
+  <button mat-button [matMenuTriggerFor]="menuComisaria">Comisaria</button>
+  <button mat-button [matMenuTriggerFor]="menuLugarHecho">Lugar de Hecho</button>
+  <button mat-button [matMenuTriggerFor]="menuPertenenciaMarca">Marca</button>
+  <button mat-button [matMenuTriggerFor]="menuPertenenciaModelo">Modelo</button>
+  <button mat-button [matMenuTriggerFor]="menuPertenencia">Pertenencia</button>
+  <button mat-button [matMenuTriggerFor]="menuReporte" *ngIf="role == 'ADMIN' || role === 'POLICIA'">Reportes</button>
+
+
+  <span class="example-spacer"></span>
+  <button mat-button [matMenuTriggerFor]="menuSalir"><mat-icon>account_circle</mat-icon></button>
+</mat-toolbar>
+
+<mat-menu #menuAyuda="matMenu">
+  <button mat-menu-item routerLink="components/Ayuda/nuevo">Registrar ayuda</button>
+  <button mat-menu-item routerLink="components/Ayuda">Listar ayuda</button>
+</mat-menu>
+
+<mat-menu #menuCiudadano="matMenu">
+  <button mat-menu-item routerLink="components/ciudadano/nuevo">Registrar ciudadano</button>
+  <button mat-menu-item routerLink="components/ciudadano">Listar Ciudadano</button>
+</mat-menu>
+
+<mat-menu #menuPolicia="matMenu">
+  <button mat-menu-item routerLink="components/policia/nuevo">Registrar Policia</button>
+  <button mat-menu-item routerLink="components/policia">Listar Policia</button>
+</mat-menu>
+
+<mat-menu #menuDenuncia="matMenu">
+  <button mat-menu-item routerLink="components/Denuncia">Listar</button>
+  <button mat-menu-item routerLink="components/Denuncia/insertar">Registrar</button>
+</mat-menu>
+
+<mat-menu #menuComisaria="matMenu">
+  <button mat-menu-item routerLink="components/Comisaria">Listar Comisaria</button>
+  <button mat-menu-item routerLink="components/Comisaria/insertar" *ngIf="role == 'ADMIN' || role === 'POLICIA'">Registrar Comisaria</button>
+  <button mat-menu-item routerLink="components/UbicacionC">Listar Ubicacion C</button>
+  <button mat-menu-item routerLink="components/UbicacionC/insertar" *ngIf="role == 'ADMIN' || role === 'POLICIA'">Registrar Ubicacion C</button>
+</mat-menu>
+
+<mat-menu #menuLugarHecho="matMenu">
+  <button mat-menu-item routerLink="components/LugarHecho">Listar</button>
+  <button mat-menu-item routerLink="components/LugarHecho/insertar">Registrar</button>
+</mat-menu>
+
+<mat-menu #menuPertenenciaMarca="matMenu">
+  <button mat-menu-item routerLink="components/PertenenciaMarca">Listar</button>
+  <button mat-menu-item routerLink="components/PertenenciaMarca/insertar">Registrar</button>
+</mat-menu>
+
+<mat-menu #menuPertenenciaModelo="matMenu">
+  <button mat-menu-item routerLink="components/PertenenciaModelo">Listar</button>
+  <button mat-menu-item routerLink="components/PertenenciaModelo/insertar">Registrar</button>
+</mat-menu>
+
+<mat-menu #menuPertenencia="matMenu">
+  <button mat-menu-item routerLink="components/Pertenencia">Listar</button>
+  <button mat-menu-item routerLink="components/Pertenencia/insertar">Registrar</button>
+</mat-menu>
+
+<mat-menu #menuReporte="matMenu">
+  <button mat-menu-item routerLink="components/Reportes/Reporte01">Reporte 01</button>
+  <button mat-menu-item routerLink="components/Reportes/Reporte02">Reporte 02</button>
+</mat-menu>
+
+<mat-menu #menuSalir="matMenu">
+  <button mat-menu-item routerLink="/login" (click)="cerrar()">
+    <mat-icon>logout</mat-icon>
+    <span>Cerrar sesión</span>
+  </button>
+  <button mat-menu-item>
+    Rol:
+    <span>{{ role }}</span>
+  </button>
+</mat-menu>
+
+
+<router-outlet></router-outlet>

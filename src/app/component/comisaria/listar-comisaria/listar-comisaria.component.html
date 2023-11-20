@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <br />
+      <h2 style="text-align: center">Lista de Comisarias</h2>
+
+      <div style="text-align: right">
+        <button
+          mat-mini-fab
+          style="background-color: green; color: white"
+          routerLink="/components/Comisaria/insertar"
+          *ngIf="role == 'ADMIN' || role === 'POLICIA'"
+        >
+          <mat-icon>plus_one</mat-icon>
+        </button>
+      </div>
+
+      <mat-form-field>
+        <input matInput (keyup)="filter($event)" placeholder="buscar" />
+      </mat-form-field>
+
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="Id">
+          <th mat-header-cell *matHeaderCellDef>Id</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.idComisaria }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="nombreComisaria">
+          <th mat-header-cell *matHeaderCellDef>Nombre Comisaria</th>
+          <td mat-cell *matCellDef="let element">{{ element.nombre_c }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="telefono">
+          <th mat-header-cell *matHeaderCellDef>Telefono</th>
+          <td mat-cell *matCellDef="let element">{{ element.telefono }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="direccion">
+          <th mat-header-cell *matHeaderCellDef>Direccion</th>
+          <td mat-cell *matCellDef="let element">{{ element.direccion }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="idUbicacionC">
+          <th mat-header-cell *matHeaderCellDef>Ubicacion</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.idUbicacionC.idUbicacionC }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="accion01">
+          <th mat-header-cell *matHeaderCellDef>Acciones</th>
+          <td mat-cell *matCellDef="let element">
+            <button
+              mat-raised-button
+              style="background-color: gold; color: white"
+              [routerLink]="['ediciones', element.idComisaria]"
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="accion02">
+          <th mat-header-cell *matHeaderCellDef>Acciones</th>
+          <td mat-cell *matCellDef="let element">
+            <button
+              mat-raised-button
+              color="warn"
+              (click)="eliminar(element.idComisaria)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 15]"
+        showFirstLastButtons
+      ></mat-paginator>
+    </div>
+  </body>
+</html>

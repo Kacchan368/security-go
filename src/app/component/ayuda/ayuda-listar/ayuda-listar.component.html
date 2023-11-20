@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Listar Ayuda</title>
+  </head>
+  <body>
+    <div class="container">
+      <br />
+      <h2 style="text-align: center">Lista de ayuda</h2>
+      <div style="text-align: right">
+        <button
+          mat-mini-fab
+          style="background-color: green; color: white;"
+          routerLink="/components/Ayuda/nuevo"
+        >
+          <mat-icon>plus_one</mat-icon>
+        </button>
+      </div>
+      <mat-form-field>
+        <input matInput (keyup)="filter($event)" placeholder="buscar" />
+      </mat-form-field>
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="codigo">
+          <th mat-header-cell *matHeaderCellDef>Id. Ayuda</th>
+          <td mat-cell *matCellDef="let element">{{ element.idAyuda }}</td>
+        </ng-container>
+        <ng-container matColumnDef="fecha">
+          <th mat-header-cell *matHeaderCellDef>Fecha de ayuda</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.fechaAyuda | date : "d MMMM y" }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="idTipoCaso">
+          <th mat-header-cell *matHeaderCellDef>Id. Tipo Caso</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.idTipoCaso.idTipoCaso }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="accion01">
+          <th mat-header-cell *matHeaderCellDef>Acciones</th>
+          <td mat-cell *matCellDef="let element">
+            <button
+              mat-raised-button
+              style="background-color: gold; color: white;"
+              [routerLink]="['ediciones', element.idAyuda]"
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
+          </td></ng-container
+        >
+        <ng-container matColumnDef="accion02">
+          <th mat-header-cell *matHeaderCellDef>Acciones</th>
+          <td mat-cell *matCellDef="let element">
+            <button
+              mat-raised-button
+              color="warn"
+              (click)="eliminar(element.idAyuda)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td></ng-container
+        >
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 25, 100]"
+        showFirstLastButtons
+      ></mat-paginator>
+    </div>
+  </body>
+</html>

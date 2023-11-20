@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inicio de sesión</title>
+  </head>
+  <body>
+    <section class="container" style="text-align: center">
+      <div>
+        <img src="assets/Logo_GS.png" alt="Logo de la empresa" />
+      </div>
+      <div class="login-input">
+        <br />
+        <h2>Iniciar sesión</h2>
+        <h1>Policia</h1>
+        <mat-form-field class="example-full-width">
+          <mat-label>Usuario</mat-label>
+          <input matInput placeholder="Username" [(ngModel)]="username" />
+        </mat-form-field>
+        <mat-icon>person</mat-icon>
+        <br />
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Password</mat-label>
+          <input
+            type="password"
+            matInput
+            placeholder="Password"
+            [(ngModel)]="password"
+          />
+        </mat-form-field>
+        <mat-icon>lock</mat-icon>
+        <br />
+        <button mat-raised-button color="primary" (click)="login()">
+          Ingresar
+        </button>
+        <div class="mt-4 text-center">
+          ¿Aun no tienes una cuenta? <a href="registroPolicia">Registrarme</a>
+        </div>
+        <div class="mt-4 text-center">
+          ¿Ingresar como? <a href="loginCiudadano">Ciudadano</a> <label>_o_</label><a href="login">Administrador</a>
+        </div>
+      </div>
+    </section>
+    <footer>Grupo 05 &copy; 2023 &mdash; GoSecurity</footer>
+  </body>
+</html>

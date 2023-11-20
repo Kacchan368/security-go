@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loguin Ciudadano</title>
+  </head>
+  <body>
+    <section>
+      <div class="container" style="text-align: center">
+        <h2>Registrese como Policia</h2>
+        <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+          <mat-form-field class="example-full-width">
+            <mat-label>Id. Policia</mat-label>
+            <input
+              matInput
+              placeholder="Id. Policia"
+              formControlName="idPolicia"
+            />
+          </mat-form-field>
+          <br />
+
+          <mat-form-field class="example-full-width">
+            <mat-label>Numero Placa</mat-label>
+            <input
+              matInput
+              placeholder="Numero de placa"
+              formControlName="numeroPlacaPolicia"
+            />
+            <!--<mat-error
+              *ngIf="obtenerControlCampo('numeroPlacaPolicia')?.errors?.['required']"
+            >
+              El nro. de placa es obligatoria.
+            </mat-error>-->
+          </mat-form-field>
+          <br />
+          <mat-form-field class="example-full-width">
+            <mat-label>Foto del Rostro</mat-label>
+            <input
+              matInput
+              placeholder="Foto Rostro"
+              formControlName="fotoRostroPolicia"
+            />
+            <!--<mat-error
+              *ngIf="obtenerControlCampo('fotoRostroPolicia')?.errors?.['required']"
+            >
+              La foto del rostro es obligatoria.
+            </mat-error>-->
+          </mat-form-field>
+          <br />
+          <mat-form-field class="example-full-width">
+            <mat-label>Foto Identificacion</mat-label>
+            <input
+              matInput
+              placeholder="Foto Identificacion"
+              formControlName="fotoIdentPolicia"
+            />
+            <!--<mat-error
+              *ngIf="obtenerControlCampo('fotoIdentPolicia')?.errors?.['required']"
+            >
+              La foto de identificación es obligatoria.
+            </mat-error>-->
+          </mat-form-field>
+          <br />
+          <mat-form-field class="example-full-width">
+            <mat-label>Rango</mat-label>
+            <input matInput placeholder="rango" formControlName="rangoPolicia" />
+            <!--<mat-error
+              *ngIf="obtenerControlCampo('rangoPolicia')?.errors?.['required']"
+            >
+              El rango es obligatorio.
+            </mat-error>-->
+          </mat-form-field>
+          <br />
+          <mat-form-field class="example-full-width">
+            <mat-label>Comisaria</mat-label>
+            <input matInput placeholder="idComisaria" formControlName="idComisaria" />
+            <!--<mat-error
+              *ngIf="obtenerControlCampo('rangoPolicia')?.errors?.['required']"
+            >
+              El rango es obligatorio.
+            </mat-error>-->
+          </mat-form-field>
+          <br />
+          <mat-form-field class="example-full-width">
+            <mat-label>Usuario</mat-label>
+            <input matInput placeholder="Usuario" formControlName="username"/>
+          </mat-form-field>
+          <br />
+          <mat-form-field class="example-full-width">
+            <mat-label>Contraseña</mat-label>
+            <input
+              matInput
+              placeholder="Contraseña"
+              formControlName="password"
+            />
+          </mat-form-field>
+          <br />
+
+          <button mat-raised-button style="background-color: green; color: white;">Aceptar</button>
+          <button mat-raised-button color="warn" routerLink="/loginCiudadano">
+            Cancelar
+          </button>
+          <p>{{ mensaje }}</p>
+        </form>
+      </div>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loguin Ciudadano</title>
+  </head>
+  <body>
+    <div class="container" style="text-align: center">
+      <h2>Registrese como ciudadano</h2>
+      <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+
+        <mat-form-field class="example-full-width" *ngIf="edicion">
+          <mat-label>Id. Ciudadano</mat-label>
+          <input matInput placeholder="Id. Ciudadano" formControlName="idCiudadano" />
+        </mat-form-field>
+        <br />
+
+        <mat-form-field class="example-full-width">
+          <mat-label>DNI Ciudadano</mat-label>
+          <input matInput placeholder="DNI" formControlName="numeroCiudadano" />
+          <mat-error
+            *ngIf="obtenerControlCampo('numeroCiudadano')?.errors?.['required']"
+          >
+            El DNI del ciudadano es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Seleccione id. User</mat-label>
+          <mat-select
+            [(value)]="idUserSeleccionado"
+            formControlName="users"
+          >
+            <mat-option *ngFor="let p of listaUsuario" [value]="p.id">
+              {{ p.id }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="obtenerControlCampo('users')?.errors?.['required']"
+          >
+            El id del usuario es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <button mat-raised-button style="background-color: green; color: white;">Aceptar</button>
+        <button mat-raised-button color="warn" routerLink="/components/ciudadano">
+          Cancelar
+        </button>
+        <p>{{ mensaje }}</p>
+      </form>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listar Lugar Hecho</title>
+</head>
+
+<body>
+    <div class="container">
+        <br />
+
+        <h2 style="text-align: center">Lista de Lugar de Hecho</h2>
+
+        <div style="text-align: right;">
+            <button mat-mini-fab style="background-color: green; color: white;" routerLink="/components/LugarHecho/insertar">
+                <mat-icon>plus_one</mat-icon>
+            </button>
+        </div>
+
+        <mat-form-field>
+            <input matInput (keyup)="filter($event)" placeholder="buscar" />
+        </mat-form-field>
+
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+            <ng-container matColumnDef="idDenunciasLugarHecho">
+                <th mat-header-cell *matHeaderCellDef>Id. </th>
+                <td mat-cell *matCellDef="let element">{{ element.idDenunciasLugarHecho }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="nameDenunciasLugarHecho">
+                <th mat-header-cell *matHeaderCellDef>Nombre Denuncia</th>
+                <td mat-cell *matCellDef="let element">{{ element.nameDenunciasLugarHecho }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="distritoDenuncia">
+                <th mat-header-cell *matHeaderCellDef>Distrito</th>
+                <td mat-cell *matCellDef="let element">{{ element.distritoDenuncia }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="provinciaDenuncia">
+                <th mat-header-cell *matHeaderCellDef>Provincia</th>
+                <td mat-cell *matCellDef="let element">{{ element.provinciaDenuncia }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="lugarDenuncia">
+                <th mat-header-cell *matHeaderCellDef>Lugar de Denuncia</th>
+                <td mat-cell *matCellDef="let element">{{ element.lugarDenuncia }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="accion01">
+                <th mat-header-cell *matHeaderCellDef>Acciones</th>
+                <td mat-cell *matCellDef="let element">
+                    <button mat-raised-button style="background-color: gold; color: white;" [routerLink]="['ediciones', element.idDenunciasLugarHecho]">
+                    <mat-icon>edit</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="accion02">
+                <th mat-header-cell *matHeaderCellDef>Acciones</th>
+                <td mat-cell *matCellDef="let element">
+                    <button mat-raised-button color="warn" (click)="eliminar(element.idDenunciasLugarHecho)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+
+    </div>
+</body>
+
+</html>

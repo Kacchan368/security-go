@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Insertar Ayuda</title>
+  </head>
+  <body>
+    <div class="container" style="text-align: center">
+      <h2>Registro de Solicitud de ayuda</h2>
+      <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+
+        <mat-form-field class="example-full-width" *ngIf="edicion">
+          <mat-label>Id. Ayuda</mat-label>
+          <input matInput placeholder="Id. Ayuda" formControlName="idAyuda" />
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="fill" class="example-full-width">
+          <input
+            matInput
+            placeholder="Ingrese fecha de inicio"
+            [matDatepicker]="pickerStart"
+            formControlName="fechaAyuda"
+            [max]="maxFecha"
+          />
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="pickerStart"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #pickerStart></mat-datepicker>
+          <mat-error
+            *ngIf="obtenerControlCampo('fechaAyuda')?.errors?.['required']"
+          >
+            La fecha de ayuda es obligatoria.
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Seleccione el Tipo de Caso</mat-label>
+          <mat-select
+            [(value)]="idTipoCasoSeleccionado"
+            formControlName="idTipoCaso"
+          >
+            <mat-option *ngFor="let p of listaTipoCasos" [value]="p.idTipoCaso">
+              {{ p.idTipoCaso }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="obtenerControlCampo('idTipoCaso')?.errors?.['required']"
+          >
+            El id del tipo de caso es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <button mat-raised-button style="background-color: green; color: white;">Aceptar</button>
+        <button mat-raised-button color="warn" routerLink="/components/Ayuda">
+          Cancelar
+        </button>
+        <p>{{ mensaje }}</p>
+      </form>
+    </div>
+  </body>
+</html>
